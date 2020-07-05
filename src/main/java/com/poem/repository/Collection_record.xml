@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poem.repository.Collection_record">
+
+    <!-- 添加用户 -->
+    <insert id="AddCollection" parameterType="UserCollection_record">
+        insert into collection_record (user_id,poem_id) values (#{user_id},#{poem_id})
+    </insert>
+    <delete id="DelCollection" parameterType="UserCollection_record">
+        delete from collection_record where user_id=#{user_id}and poem_id=#{poem_id}
+    </delete>
+    <select id="SelectCollection" parameterType="User" resultType="Poem">
+         select p.poem_name,p.writer,p.poem_context from poem as p,collection_record as c ,user as u where c.user_id=u.id and
+        p.id=c.poem_id and u.username="qiu"
+    </select>
+</mapper>

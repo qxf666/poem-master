@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poem.repository.DynastyMapper">
+    <select id="SelectDynasty" parameterType="String" resultType="Dynasty">
+        select t_dynastyimg.img ,t_poems_dynasty.dyname,t_poems_dynasty.start ,t_poems_dynasty.end,t_poems_dynasty.intro
+        from t_poems_dynasty,t_dynastyimg
+        where t_dynastyimg.dynastyToImg=t_poems_dynasty.id
+<!--                  <if test="DynastyName!=null and DynastyName!=''">-->
+        and t_poems_dynasty.dyname like concat('%',#{DynastyName},'%')
+<!--                  </if>-->
+    </select>
+</mapper>

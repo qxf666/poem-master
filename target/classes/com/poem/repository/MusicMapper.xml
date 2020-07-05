@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poem.repository.MusicMapper">
+    <select id="SelectMusic" parameterType="String" resultType="PoemMusic">
+        select id,musicID,musicIMG,musicMV,musicName
+        from poemMusic where 1=1
+        <!--          <if test="poemName!=null and poemName!=''">-->
+        and poemMusic.musicName like concat('%',#{musicName},'%')
+        <!--          </if>-->
+    </select>
+    <select id="SelectMusicByDynasty" parameterType="String" resultType="PoemMusic">
+       select poemMusic.id,musicID,musicIMG,musicMV,musicName
+        from poemMusic,t_poems_dynasty where poemMusic.DynasticId=t_poems_dynasty.id
+        and t_poems_dynasty.dyname like concat('%',#{dynastyName},'%')
+    </select>
+    <select id="musicUrl" parameterType="int" resultType="PoemMusic">
+        select musicID,musicIMG from poemMusic where id=#{id}
+    </select>
+</mapper>

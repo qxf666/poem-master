@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poem.repository.Advice_back">
+    <!-- 添加意见反馈 -->
+    <insert id="Add_Advice_backByUid" parameterType="Advice_back">
+        insert into Advice_back(user_id,text) values (#{user_id},#{text})
+    </insert>
+    <delete id="Delete_Advice_backByUid" parameterType="Integer">
+        delete form Advice_back where user_id=#{user_id}
+    </delete>
+    <select id="Select_Advice_backByUid" parameterType="User" resultType="User_Advice_back">
+        select a.text,b.username from Advice_back as a,user as b where a.user_id=#{id},b.id=#{id}
+    </select>
+    <!--管理员查看所有的意见反馈-->
+    <select id="SelectAll_Advice_backByUid" parameterType="User">
+        select a.text,b.username from Advice_back as a,user as b
+    </select>
+</mapper>
